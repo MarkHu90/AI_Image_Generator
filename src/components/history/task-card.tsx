@@ -24,7 +24,7 @@ export function TaskCard({ task }: TaskCardProps) {
   const thumbnail = task.output?.urls?.[0];
 
   return (
-    <div className="group rounded-lg overflow-hidden bg-card border border-border hover:border-border-active transition-colors">
+    <div className="group rounded-lg overflow-hidden bg-card border border-border hover:border-primary transition-colors">
       <div className="aspect-square bg-surface flex items-center justify-center">
         {thumbnail ? (
           <img
