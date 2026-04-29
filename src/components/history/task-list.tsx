@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { TaskCard } from "./task-card";
 
 interface Task {
@@ -18,15 +19,23 @@ interface TaskListProps {
 export function TaskList({ tasks }: TaskListProps) {
   if (tasks.length === 0) {
     return (
-      <div className="text-center py-16 text-text-secondary">
-        <p className="text-lg mb-1">No generations yet</p>
-        <p className="text-sm">Your generated images will appear here.</p>
+      <div className="text-center py-20 text-text-secondary">
+        <p className="text-sm font-medium mb-1">No generations yet</p>
+        <p className="text-xs text-text-tertiary mb-4">
+          Your generated images will appear here.
+        </p>
+        <Link
+          href="/generate"
+          className="text-xs text-primary hover:underline"
+        >
+          Create your first image
+        </Link>
       </div>
     );
   }
 
   return (
-    <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+    <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
       {tasks.map((task) => (
         <TaskCard key={task.id} task={task} />
       ))}
