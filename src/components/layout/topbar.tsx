@@ -6,9 +6,9 @@ export async function Topbar() {
   const email = session?.user?.email;
 
   return (
-    <header className="h-14 border-b border-border bg-card flex items-center justify-between px-6 shrink-0">
-      <span className="text-sm text-muted-foreground" />
-      <span className="text-sm text-muted-foreground">{email}</span>
+    <header className="h-12 border-b border-border flex items-center justify-between px-6 shrink-0 bg-background">
+      <span className="text-xs text-text-tertiary" />
+      <span className="text-xs text-text-secondary">{email}</span>
     </header>
   );
 }

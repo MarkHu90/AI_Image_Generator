@@ -17,32 +17,34 @@ export function Sidebar() {
   const router = useRouter();
 
   return (
-    <aside className="w-56 h-screen border-r border-border bg-card flex flex-col shrink-0">
-      <div className="p-4 font-bold text-lg flex items-center gap-2">
-        <ImageIcon className="w-5 h-5 text-indigo-400" />
-        AI Image Gen
+    <aside className="w-55 h-screen bg-surface flex flex-col shrink-0">
+      <div className="px-4 py-4 font-semibold text-sm text-foreground">
+        ImageForge
       </div>
-      <nav className="flex-1 px-2 space-y-1">
-        {links.map(({ href, label, icon: Icon }) => (
-          <Link
-            key={href}
-            href={href}
-            className={clsx(
-              "flex items-center gap-2 px-3 py-2 rounded-md text-sm transition-colors",
-              pathname === href
-                ? "bg-primary/10 text-primary"
-                : "text-muted-foreground hover:bg-accent hover:text-foreground"
-            )}
-          >
-            <Icon className="w-4 h-4" />
-            {label}
-          </Link>
-        ))}
+      <nav className="flex-1 px-2 space-y-0.5">
+        {links.map(({ href, label, icon: Icon }) => {
+          const active = pathname === href;
+          return (
+            <Link
+              key={href}
+              href={href}
+              className={clsx(
+                "flex items-center gap-2.5 px-3 py-2 rounded-md text-sm transition-colors",
+                active
+                  ? "bg-accent text-foreground border-l-2 border-primary pl-2.5"
+                  : "text-text-secondary hover:bg-surface-hover hover:text-foreground border-l-2 border-transparent pl-2.5"
+              )}
+            >
+              <Icon className="w-4 h-4" />
+              {label}
+            </Link>
+          );
+        })}
       </nav>
-      <div className="p-2 border-t border-border">
+      <div className="p-2">
         <button
           onClick={() => authClient.signOut().then(() => router.push("/"))}
-          className="flex items-center gap-2 px-3 py-2 rounded-md text-sm text-muted-foreground hover:bg-accent w-full transition-colors"
+          className="flex items-center gap-2.5 px-3 py-2 rounded-md text-sm text-text-secondary hover:bg-surface-hover hover:text-foreground w-full transition-colors"
         >
           <LogOut className="w-4 h-4" />
           Sign Out
