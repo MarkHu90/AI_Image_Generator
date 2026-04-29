@@ -85,7 +85,12 @@ export function AuthForm({ mode }: AuthFormProps) {
           minLength={8}
         />
       </div>
-      <Button type="submit" className="w-full h-9" disabled={loading}>
+      <Button
+        type="submit"
+        className="w-full h-9 font-semibold"
+        style={{ background: "var(--chrome-accent)" }}
+        disabled={loading}
+      >
         {loading ? "Loading..." : mode === "login" ? "Sign In" : "Create Account"}
       </Button>
     </form>
