@@ -17,11 +17,14 @@ export function Sidebar() {
   const router = useRouter();
 
   return (
-    <aside className="w-55 h-screen bg-surface flex flex-col shrink-0">
-      <div className="px-4 py-4 font-semibold text-sm text-foreground">
-        ImageForge
+    <aside className="w-60 h-screen flex flex-col shrink-0 px-3 py-4 animate-slide-in-left">
+      <div className="px-3 pb-5 pt-1">
+        <span className="font-display text-xl text-foreground tracking-tight">
+          ImageForge
+        </span>
       </div>
-      <nav className="flex-1 px-2 space-y-0.5">
+
+      <nav className="flex-1 space-y-0.5">
         {links.map(({ href, label, icon: Icon }) => {
           const active = pathname === href;
           return (
@@ -29,10 +32,10 @@ export function Sidebar() {
               key={href}
               href={href}
               className={clsx(
-                "flex items-center gap-2.5 px-3 py-2 rounded-md text-sm transition-colors",
+                "flex items-center gap-2.5 px-3 py-2 rounded-lg text-sm font-medium transition-all duration-200",
                 active
-                  ? "bg-accent text-foreground border-l-2 border-primary pl-2.5"
-                  : "text-text-secondary hover:bg-surface-hover hover:text-foreground border-l-2 border-transparent pl-2.5"
+                  ? "bg-accent text-accent-foreground shadow-[inset_0_1px_0_0_rgba(255,255,255,0.1)]"
+                  : "text-text-secondary hover:bg-surface-hover hover:text-foreground"
               )}
             >
               <Icon className="w-4 h-4" />
@@ -41,10 +44,11 @@ export function Sidebar() {
           );
         })}
       </nav>
-      <div className="p-2">
+
+      <div className="pt-2">
         <button
           onClick={() => authClient.signOut().then(() => router.push("/"))}
-          className="flex items-center gap-2.5 px-3 py-2 rounded-md text-sm text-text-secondary hover:bg-surface-hover hover:text-foreground w-full transition-colors"
+          className="flex items-center gap-2.5 px-3 py-2 rounded-lg text-sm text-text-secondary hover:bg-surface-hover hover:text-foreground w-full transition-colors font-medium"
         >
           <LogOut className="w-4 h-4" />
           Sign Out
