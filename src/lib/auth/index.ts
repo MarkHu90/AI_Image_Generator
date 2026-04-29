@@ -5,6 +5,7 @@ import { db } from "@/lib/db";
 export const auth = betterAuth({
   database: prismaAdapter(db, {
     provider: "postgresql",
+    transaction: true,
   }),
   emailAndPassword: {
     enabled: true,
