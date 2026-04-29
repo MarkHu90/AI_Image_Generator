@@ -24,7 +24,7 @@ export function TaskCard({ task }: TaskCardProps) {
   const thumbnail = task.output?.urls?.[0];
 
   return (
-    <div className="group rounded-lg overflow-hidden bg-card border border-border hover:border-primary transition-colors">
+    <div className="group rounded-xl overflow-hidden glass transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg hover:border-primary/30">
       <div className="aspect-square bg-surface flex items-center justify-center">
         {thumbnail ? (
           <img
@@ -33,7 +33,7 @@ export function TaskCard({ task }: TaskCardProps) {
             className="w-full h-full object-cover"
           />
         ) : (
-          <span className="text-text-secondary text-xs">
+          <span className="text-text-secondary text-xs font-medium">
             {task.status === "processing" ? "Processing..." : "No preview"}
           </span>
         )}
@@ -44,7 +44,7 @@ export function TaskCard({ task }: TaskCardProps) {
         </Badge>
         <div className="flex items-center justify-between text-[11px] text-text-secondary">
           <span>{new Date(task.createdAt).toLocaleDateString()}</span>
-          <span className={task.status === "failed" ? "text-red-400" : task.status === "completed" ? "text-primary" : ""}>
+          <span className={task.status === "failed" ? "text-red-400" : task.status === "completed" ? "text-primary font-semibold" : ""}>
             {task.status}
           </span>
         </div>

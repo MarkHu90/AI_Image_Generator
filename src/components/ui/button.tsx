@@ -8,7 +8,7 @@ const buttonVariants = cva(
   {
     variants: {
       variant: {
-        default: "bg-primary text-primary-foreground [a]:hover:bg-primary/80",
+        default: "text-primary-foreground hover:opacity-90 hover:shadow-lg disabled:hover:shadow-none",
         outline:
           "border-border bg-background hover:bg-muted hover:text-foreground aria-expanded:bg-muted aria-expanded:text-foreground dark:border-input dark:bg-input/30 dark:hover:bg-input/50",
         secondary:
@@ -44,12 +44,18 @@ function Button({
   className,
   variant = "default",
   size = "default",
+  style,
   ...props
-}: ButtonPrimitive.Props & VariantProps<typeof buttonVariants>) {
+}: ButtonPrimitive.Props & VariantProps<typeof buttonVariants> & { style?: React.CSSProperties }) {
+  const isDefault = variant === "default" || !variant;
   return (
     <ButtonPrimitive
       data-slot="button"
       className={cn(buttonVariants({ variant, size, className }))}
+      style={{
+        ...(isDefault ? { background: "var(--chrome-accent)" } : {}),
+        ...style,
+      }}
       {...props}
     />
   )
