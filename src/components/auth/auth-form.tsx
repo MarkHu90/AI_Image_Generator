@@ -44,30 +44,48 @@ export function AuthForm({ mode }: AuthFormProps) {
   return (
     <form onSubmit={handleSubmit} className="space-y-4 w-full max-w-sm">
       {mode === "register" && (
+        <div className="space-y-1.5">
+          <label htmlFor="name" className="text-sm font-medium text-foreground">
+            Name
+          </label>
+          <Input
+            id="name"
+            type="text"
+            placeholder="Your name"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            required
+          />
+        </div>
+      )}
+      <div className="space-y-1.5">
+        <label htmlFor="email" className="text-sm font-medium text-foreground">
+          Email
+        </label>
         <Input
-          type="text"
-          placeholder="Name"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
+          id="email"
+          type="email"
+          placeholder="you@example.com"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
           required
         />
-      )}
-      <Input
-        type="email"
-        placeholder="Email"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-        required
-      />
-      <Input
-        type="password"
-        placeholder="Password"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-        required
-        minLength={8}
-      />
-      <Button type="submit" className="w-full" disabled={loading}>
+      </div>
+      <div className="space-y-1.5">
+        <label htmlFor="password" className="text-sm font-medium text-foreground">
+          Password
+        </label>
+        <Input
+          id="password"
+          type="password"
+          placeholder="Min. 8 characters"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          required
+          minLength={8}
+        />
+      </div>
+      <Button type="submit" className="w-full h-9" disabled={loading}>
         {loading ? "Loading..." : mode === "login" ? "Sign In" : "Create Account"}
       </Button>
     </form>

@@ -8,7 +8,7 @@ export default function RegisterPage() {
       <AuthForm mode="register" />
       <p className="mt-4 text-muted-foreground text-sm">
         Already have an account?{" "}
-        <Link href="/login" className="text-indigo-400 hover:underline">
+        <Link href="/login" className="text-primary hover:underline">
           Sign In
         </Link>
       </p>
