@@ -1,8 +1,17 @@
+"use client";
+
+import { useState } from "react";
+import { FeatureTabs } from "@/components/generate/feature-tabs";
+import { GenerateForm } from "@/components/generate/generate-form";
+import type { TaskType } from "@/lib/providers/types";
+
 export default function GeneratePage() {
+  const [activeType, setActiveType] = useState<TaskType>("text_to_image");
+
   return (
-    <div>
-      <h1 className="text-2xl font-bold mb-4">Generate</h1>
-      <p className="text-muted-foreground">Image generation workspace coming soon.</p>
+    <div className="space-y-6">
+      <FeatureTabs value={activeType} onChange={setActiveType} />
+      <GenerateForm type={activeType} />
     </div>
   );
 }
