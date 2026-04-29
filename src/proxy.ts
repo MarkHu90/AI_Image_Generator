@@ -4,7 +4,7 @@ import { auth } from "@/lib/auth";
 const dashboardPaths = ["/generate", "/history", "/settings"];
 const authPaths = ["/login", "/register"];
 
-export default async function middleware(request: NextRequest) {
+export default async function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
   const session = await auth.api.getSession({
