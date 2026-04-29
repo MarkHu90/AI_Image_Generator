@@ -9,7 +9,7 @@ export default function GeneratePage() {
   const [activeType, setActiveType] = useState<TaskType>("text_to_image");
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       <FeatureTabs value={activeType} onChange={setActiveType} />
       <GenerateForm type={activeType} />
     </div>

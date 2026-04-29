@@ -21,7 +21,7 @@ export function FeatureTabs({ value, onChange }: FeatureTabsProps) {
       value={value}
       onValueChange={(v) => onChange(v as TaskType)}
     >
-      <TabsList>
+      <TabsList variant="line">
         {tabs.map((tab) => (
           <TabsTrigger key={tab.value} value={tab.value}>
             {tab.label}

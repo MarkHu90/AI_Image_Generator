@@ -28,8 +28,8 @@ export function GenerationPreview({ result, loading }: GenerationPreviewProps) {
 
   if (!result) {
     return (
-      <div className="flex items-center justify-center h-full min-h-[400px] border border-dashed border-border-primary rounded-lg text-text-secondary">
-        Generated images will appear here
+      <div className="flex items-center justify-center h-full min-h-[400px] border border-border rounded-lg text-text-secondary">
+        <p className="text-sm">Generated images will appear here</p>
       </div>
     );
   }
@@ -48,22 +48,21 @@ export function GenerationPreview({ result, loading }: GenerationPreviewProps) {
             <a
               href={img.url}
               download
-              className="absolute top-2 right-2 px-3 py-1 bg-bg-tertiary/80 rounded-md text-sm opacity-0 group-hover:opacity-100 transition-opacity"
+              className="absolute top-2 right-2 px-3 py-1.5 bg-background/90 rounded-md text-xs opacity-0 group-hover:opacity-100 transition-opacity"
             >
               Download
             </a>
           </div>
         ))}
       </div>
-      <div className="text-sm text-text-secondary space-y-1">
+      <div className="text-xs text-text-secondary space-y-1">
         <p>
-          Model: {result.metadata.model} —{" "}
-          {(result.metadata.durationMs / 1000).toFixed(1)}s
+          {result.metadata.model} — {(result.metadata.durationMs / 1000).toFixed(1)}s
         </p>
         {result.metadata.revisedPrompt && (
-          <p>Revised prompt: {result.metadata.revisedPrompt}</p>
+          <p>Revised: {result.metadata.revisedPrompt}</p>
         )}
-        <p>Remaining credits: {result.remainingCredits}</p>
+        <p>{result.remainingCredits} credits remaining</p>
       </div>
     </div>
   );

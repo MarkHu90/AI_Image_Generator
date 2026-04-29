@@ -18,15 +18,21 @@ export function PromptInput({
 }: PromptInputProps) {
   return (
     <div className="space-y-2">
+      <label className="text-xs font-medium text-text-secondary uppercase tracking-wide">
+        Prompt
+      </label>
       <Textarea
         placeholder="Describe the image you want to generate..."
         value={prompt}
         onChange={(e) => onPromptChange(e.target.value)}
         className="min-h-[100px] resize-none"
       />
+      <span className="text-xs text-text-tertiary">
+        {prompt.length} characters
+      </span>
       {onNegativePromptChange && (
         <Input
-          placeholder="Negative prompt (optional)"
+          placeholder="What to avoid (optional)"
           value={negativePrompt ?? ""}
           onChange={(e) => onNegativePromptChange(e.target.value)}
         />

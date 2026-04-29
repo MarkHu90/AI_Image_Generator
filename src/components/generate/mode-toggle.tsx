@@ -1,6 +1,5 @@
 "use client";
 
-import { Button } from "@/components/ui/button";
 import clsx from "clsx";
 
 interface ModeToggleProps {
@@ -10,23 +9,26 @@ interface ModeToggleProps {
 
 export function ModeToggle({ value, onChange }: ModeToggleProps) {
   return (
-    <div className="flex gap-1">
-      <Button
-        variant={value === "sync" ? "default" : "outline"}
-        size="sm"
-        onClick={() => onChange("sync")}
-        className="flex-1"
-      >
-        Sync
-      </Button>
-      <Button
-        variant={value === "async" ? "default" : "outline"}
-        size="sm"
-        onClick={() => onChange("async")}
-        className="flex-1"
-      >
-        Async
-      </Button>
+    <div className="space-y-1.5">
+      <span className="text-xs font-medium text-text-secondary uppercase tracking-wide">
+        Mode
+      </span>
+      <div className="inline-flex rounded-md border border-border overflow-hidden">
+        {(["sync", "async"] as const).map((mode) => (
+          <button
+            key={mode}
+            onClick={() => onChange(mode)}
+            className={clsx(
+              "px-3 py-1.5 text-xs font-medium transition-colors capitalize",
+              value === mode
+                ? "bg-accent text-foreground"
+                : "text-text-secondary hover:text-foreground hover:bg-surface-hover"
+            )}
+          >
+            {mode}
+          </button>
+        ))}
+      </div>
     </div>
   );
 }

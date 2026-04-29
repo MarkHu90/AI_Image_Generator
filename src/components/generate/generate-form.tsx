@@ -20,6 +20,7 @@ export function GenerateForm({ type }: GenerateFormProps) {
   const [negativePrompt, setNegativePrompt] = useState("");
   const [aspectRatio, setAspectRatio] = useState("1:1");
   const [imageCount, setImageCount] = useState(1);
+  const [showAdvanced, setShowAdvanced] = useState(false);
 
   const { generate, loading, result, error } = useGenerate();
 
@@ -37,7 +38,7 @@ export function GenerateForm({ type }: GenerateFormProps) {
 
   return (
     <div className="flex gap-6">
-      <div className="w-[480px] space-y-4">
+      <div className="w-[380px] shrink-0 space-y-4">
         <PromptInput
           prompt={prompt}
           onPromptChange={setPrompt}
@@ -51,15 +52,24 @@ export function GenerateForm({ type }: GenerateFormProps) {
           imageCount={imageCount}
           onImageCountChange={setImageCount}
         />
-        <ModeToggle value={mode} onChange={setMode} />
+        <button
+          type="button"
+          onClick={() => setShowAdvanced(!showAdvanced)}
+          className="text-xs text-text-secondary hover:text-foreground transition-colors"
+        >
+          {showAdvanced ? "Hide" : "Show"} advanced options
+        </button>
+        {showAdvanced && (
+          <ModeToggle value={mode} onChange={setMode} />
+        )}
         <Button
           onClick={handleSubmit}
           disabled={loading || !prompt}
-          className="w-full"
+          className="w-full h-9"
         >
           {loading ? "Generating..." : "Generate"}
         </Button>
-        {error && <p className="text-red-500 text-sm">{error}</p>}
+        {error && <p className="text-red-400 text-xs">{error}</p>}
       </div>
       <div className="flex-1">
         <GenerationPreview result={result} loading={loading} />
