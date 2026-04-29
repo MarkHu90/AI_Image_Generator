@@ -6,7 +6,6 @@ import { ModelSelector } from "./model-selector";
 import { ConfigPanel } from "./config-panel";
 import { ModeToggle } from "./mode-toggle";
 import { useGenerate } from "@/lib/hooks/use-generate";
-import { Button } from "@/components/ui/button";
 import { GenerationPreview } from "./generation-preview";
 
 interface GenerateFormProps {
@@ -37,40 +36,53 @@ export function GenerateForm({ type }: GenerateFormProps) {
   }
 
   return (
-    <div className="flex gap-6">
+    <div className="flex gap-8">
       <div className="w-[380px] shrink-0 space-y-4">
-        <PromptInput
-          prompt={prompt}
-          onPromptChange={setPrompt}
-          negativePrompt={negativePrompt}
-          onNegativePromptChange={setNegativePrompt}
-        />
-        <ModelSelector value={provider} onChange={setProvider} />
-        <ConfigPanel
-          aspectRatio={aspectRatio}
-          onAspectRatioChange={setAspectRatio}
-          imageCount={imageCount}
-          onImageCountChange={setImageCount}
-        />
+        <div className="glass-strong rounded-xl p-4 space-y-4">
+          <PromptInput
+            prompt={prompt}
+            onPromptChange={setPrompt}
+            negativePrompt={negativePrompt}
+            onNegativePromptChange={setNegativePrompt}
+          />
+        </div>
+
+        <div className="glass rounded-xl p-4 space-y-4">
+          <ModelSelector value={provider} onChange={setProvider} />
+          <ConfigPanel
+            aspectRatio={aspectRatio}
+            onAspectRatioChange={setAspectRatio}
+            imageCount={imageCount}
+            onImageCountChange={setImageCount}
+          />
+        </div>
+
         <button
           type="button"
           onClick={() => setShowAdvanced(!showAdvanced)}
-          className="text-xs text-text-secondary hover:text-foreground transition-colors"
+          className="text-xs text-text-secondary hover:text-foreground transition-colors font-medium"
         >
           {showAdvanced ? "Hide" : "Show"} advanced options
         </button>
+
         {showAdvanced && (
-          <ModeToggle value={mode} onChange={setMode} />
+          <div className="glass rounded-xl p-4">
+            <ModeToggle value={mode} onChange={setMode} />
+          </div>
         )}
-        <Button
+
+        <button
           onClick={handleSubmit}
           disabled={loading || !prompt}
-          className="w-full h-9"
+          className="w-full h-10 rounded-xl text-sm font-semibold text-primary-foreground transition-all duration-200 hover:opacity-90 hover:shadow-lg disabled:opacity-40 disabled:cursor-not-allowed"
+          style={{ background: "var(--chrome-accent)" }}
         >
           {loading ? "Generating..." : "Generate"}
-        </Button>
+        </button>
+
         {error && <p className="text-red-400 text-xs">{error}</p>}
       </div>
+
       <div className="flex-1">
         <GenerationPreview result={result} loading={loading} />
       </div>

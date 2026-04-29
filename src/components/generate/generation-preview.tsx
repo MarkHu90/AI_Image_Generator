@@ -20,7 +20,7 @@ export function GenerationPreview({ result, loading }: GenerationPreviewProps) {
   if (loading) {
     return (
       <div className="space-y-4">
-        <Skeleton className="w-full aspect-square rounded-lg" />
+        <Skeleton className="w-full aspect-square rounded-xl" />
         <Skeleton className="h-4 w-48" />
       </div>
     );
@@ -28,8 +28,8 @@ export function GenerationPreview({ result, loading }: GenerationPreviewProps) {
 
   if (!result) {
     return (
-      <div className="flex items-center justify-center h-full min-h-[400px] border border-border rounded-lg text-text-secondary">
-        <p className="text-sm">Generated images will appear here</p>
+      <div className="flex items-center justify-center h-full min-h-[400px] glass rounded-xl text-text-secondary">
+        <p className="text-sm font-medium">Generated images will appear here</p>
       </div>
     );
   }
@@ -38,17 +38,17 @@ export function GenerationPreview({ result, loading }: GenerationPreviewProps) {
     <div className="space-y-4">
       <div className="grid gap-2">
         {result.images.map((img, i) => (
-          <div key={i} className="relative group rounded-lg overflow-hidden">
+          <div key={i} className="relative group rounded-xl overflow-hidden">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src={img.url}
               alt={`Generated ${i + 1}`}
-              className="w-full rounded-lg"
+              className="w-full rounded-xl animate-fade-in-scale"
             />
             <a
               href={img.url}
               download
-              className="absolute top-2 right-2 px-3 py-1.5 bg-background/90 rounded-md text-xs opacity-0 group-hover:opacity-100 transition-opacity"
+              className="absolute top-2 right-2 px-3 py-1.5 bg-background/90 backdrop-blur rounded-md text-xs font-medium opacity-0 group-hover:opacity-100 transition-opacity"
             >
               Download
             </a>

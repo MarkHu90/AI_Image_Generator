@@ -18,7 +18,7 @@ export function PromptInput({
 }: PromptInputProps) {
   return (
     <div className="space-y-2">
-      <label className="text-xs font-medium text-text-secondary uppercase tracking-wide">
+      <label className="text-xs font-semibold text-text-secondary">
         Prompt
       </label>
       <Textarea

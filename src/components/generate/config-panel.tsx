@@ -21,17 +21,18 @@ function SegmentedControl<T extends string | number>({
   onChange: (value: T) => void;
 }) {
   return (
-    <div className="inline-flex rounded-md border border-border overflow-hidden">
+    <div className="inline-flex rounded-lg border border-border overflow-hidden">
       {options.map((opt) => (
         <button
           key={String(opt.value)}
           onClick={() => onChange(opt.value)}
           className={clsx(
-            "px-3 py-1.5 text-xs font-medium transition-colors",
+            "px-3 py-1.5 text-xs font-semibold transition-all duration-200",
             value === opt.value
-              ? "bg-accent text-foreground"
+              ? "text-primary-foreground"
               : "text-text-secondary hover:text-foreground hover:bg-surface-hover"
           )}
+          style={value === opt.value ? { background: "var(--chrome-accent)" } : undefined}
         >
           {opt.label}
         </button>
@@ -54,7 +55,7 @@ export function ConfigPanel({
   return (
     <div className="space-y-3">
       <div className="space-y-1.5">
-        <span className="text-xs font-medium text-text-secondary uppercase tracking-wide">
+        <span className="text-xs font-semibold text-text-secondary">
           Aspect Ratio
         </span>
         <SegmentedControl
@@ -64,7 +65,7 @@ export function ConfigPanel({
         />
       </div>
       <div className="space-y-1.5">
-        <span className="text-xs font-medium text-text-secondary uppercase tracking-wide">
+        <span className="text-xs font-semibold text-text-secondary">
           Images
         </span>
         <SegmentedControl
